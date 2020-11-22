@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Lab4A.BLL.Domaine;
 using Microsoft.EntityFrameworkCore;
+using Lab4A.Models;
 
-namespace Lab4A.DAL
+namespace Lab4A.Models
 {
 	public class Lab4Contexte : DbContext
     {
@@ -20,5 +20,8 @@ namespace Lab4A.DAL
         }
 
         public DbSet<Utilisateur> Utilisateur { get; set; }
+
+        public DbSet<Lab4A.Models.RequeteDTO> RequeteDTO { get; set; }
+
     }
 }

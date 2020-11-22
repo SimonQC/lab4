@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lab4A.BLL.Domaine
+namespace Lab4A.Models
 {
     public enum Couleur
     {
-        Bleu = 0, Jaune = 1, Rouge = 2, Orange = 3, Vert = 4, Violet = 5, Blanc = 6, Noir = 7, Gris = 8, Brun = 9 
+        Bleu = 0,
+        Jaune = 1,
+        Rouge = 2,
+        Orange = 3,
+        Vert = 4,
+        Violet = 5,
+        Blanc = 6,
+        Noir = 7,
+        Gris = 8,
+        Brun = 9
     }
 
     public class Utilisateur
@@ -26,4 +36,5 @@ namespace Lab4A.BLL.Domaine
         public Couleur? CouleurPreferee { get; set; }
         public string SiteWeb { get; set; }
     }
+
 }

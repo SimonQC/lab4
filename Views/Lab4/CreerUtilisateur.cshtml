@@ -1,0 +1,75 @@
+﻿@model Lab4A.Models.UtilisateurViewModel
+@{
+    ViewData["Title"] = "Créer utilisateur";
+}
+
+@using (Html.BeginForm("CreerUtilisateur", "Lab4"))
+{
+    <h1>@ViewData["Title"]</h1>
+
+    <div>
+        @Html.LabelFor(x => x.Prenom)
+        @Html.TextBoxFor(x => x.Prenom, new { required = "required" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Nom)
+        @Html.TextBoxFor(x => x.Nom, new { required = "required" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Courriel)
+        @Html.TextBoxFor(x => x.Courriel, new { required = "required", type = "email",  title = "Entrez une adresse courriel valide"})
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.MotDePasse)
+        @Html.TextBoxFor(x => x.MotDePasse, new { required = "required", pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", title = "Le mot de passe doit contenir minimum 8 caractères contenant : 1 minuscules, 1 majuscule, 1 chiffre et un caractère spécial"})              
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.DateDeNaissance)
+        @Html.TextBoxFor(x => x.DateDeNaissance, new { required = "required" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Homme)
+        @Html.CheckBoxFor(x => x.Homme, new { required = "required" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Telephone)
+        @Html.TextBoxFor(x => x.Telephone, new { required = "required" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.NumCivique)
+        @Html.TextBoxFor(x => x.NumCivique, new { required = "required", type = "number", min = "0", title = "Le numéro civique doit contenir seulement des chiffres"})
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Rue)
+        @Html.TextBoxFor(x => x.Rue, new { required = "required" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.NumCarteCredit)
+        @Html.TextBoxFor(x => x.NumCarteCredit, new { required = "required" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.CouleurPreferee)
+        @Html.DropDownListFor(x => x.CouleurPreferee, new SelectList(Enum.GetValues(typeof(Couleur))), new { required = "required" })
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.SiteWeb)
+        @Html.TextBoxFor(x => x.SiteWeb, new { required = "required", type = "url", title = "Entrez une adresse URL valide" })
+    </div>
+
+    <div>
+        <input type="submit" value="Soumettre" id="btnSoumettre" asp-action="SauvegarderUtilisateur">
+    </div>
+
+}
+
