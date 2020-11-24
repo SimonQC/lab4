@@ -15,11 +15,25 @@ namespace Lab4A.Models
 			_contexte = contexte;
 		}
 
-		public void SauvegarderUtilisateur(Utilisateur utilisateur)
+		public bool SauvegarderUtilisateur(Utilisateur utilisateur)
 		{
-			_contexte.Utilisateur.Add(utilisateur);
+			Guid? id = utilisateur.IdUtilisateur;
+			string prenom = utilisateur.Prenom;
+			string nom = utilisateur.Nom;
+
+			List<Utilisateur> utilisateurs = _contexte.Utilisateurs.ToList();
+
+			if (utilisateurs.Any(utilisateur => utilisateur.Prenom == prenom || utilisateur.Nom == nom || utilisateur.IdUtilisateur == id))
+			{
+				return false;
+			}
+
+			_contexte.Utilisateurs.Add(utilisateur);
 
 			_contexte.SaveChanges();
+
+			return true;
+  
 
 		}
 
@@ -28,11 +42,12 @@ namespace Lab4A.Models
 
 			Utilisateur utilisateur = new Utilisateur();
 			utilisateur.IdUtilisateur = requeteDTO.Id;
+
 			utilisateur.Prenom = requeteDTO.Prenom;
 			utilisateur.Nom = requeteDTO.Nom;
 			utilisateur.Courriel = requeteDTO.Courriel;
 			utilisateur.MotDePasse = requeteDTO.MotDePasse;
-			utilisateur.DateDeNaissance = requeteDTO.DateDeNaissance;
+			utilisateur.DateDeNaissance = DateTime.Parse(requeteDTO.DateDeNaissance);
 			utilisateur.Homme = requeteDTO.Homme;
 			utilisateur.Telephone = requeteDTO.Telephone;
 			utilisateur.NumCivique = requeteDTO.NumCivique;
@@ -48,8 +63,7 @@ namespace Lab4A.Models
 		public Utilisateur ViewModelAUtilisateur(UtilisateurViewModel modele){
 
 			Utilisateur utilisateur = new Utilisateur();
-
-			utilisateur.IdUtilisateur = new Guid();
+			utilisateur.IdUtilisateur = Guid.NewGuid();
 			utilisateur.Prenom = modele.Prenom;
 			utilisateur.Nom = modele.Nom;
 			utilisateur.Courriel = modele.Courriel;

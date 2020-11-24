@@ -55,8 +55,6 @@ namespace Lab4A
 
 			app.UseSession();
 
-
-			app.UseRouting();
 			app.UseStaticFiles();
 
 			app.UseAuthentication();

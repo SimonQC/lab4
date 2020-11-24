@@ -1,9 +1,9 @@
 ﻿/*
 
-CREATE DATABASE `lab4a`
+CREATE DATABASE `lab4a`;
 
 CREATE TABLE `utilisateurs` (
-  `IdUtilisateur` varchar(32) NOT NULL,
+  `IdUtilisateur` varchar(36) NOT NULL,
   `Prenom` varchar(45) DEFAULT NULL,
   `Nom` varchar(45) DEFAULT NULL,
   `Courriel` varchar(45) DEFAULT NULL,
@@ -19,5 +19,4 @@ CREATE TABLE `utilisateurs` (
   PRIMARY KEY (`IdUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 SELECT * FROM lab4a.utilisateurs;
-
 */

@@ -20,14 +20,32 @@ namespace Lab4A.Controllers
         public IActionResult CreerUtilisateur()
         {
             UtilisateurViewModel modele = new UtilisateurViewModel();
-            UtilisateurTraitement traitements = new UtilisateurTraitement(contexte);
             return View(modele);
         }
 
         [HttpPost]
         public IActionResult SauvegarderUtilisateur(UtilisateurViewModel modele)
         {
-            UtilisateurTraitement traitements = new UtilisateurTraitement(contexte);
+            if (!ModelState.IsValid)
+            {
+                UtilisateurTraitement traitements = new UtilisateurTraitement(contexte);
+                Utilisateur utilisateur = traitements.ViewModelAUtilisateur(modele);
+
+                if (traitements.SauvegarderUtilisateur(utilisateur))
+                {
+                    TempData["Message"] = "l'utilisateur à été sauvegarder";
+                    TempData["MessageStyle"] = "background-color: green;color: white;";
+                }
+                else
+                {
+                    TempData["Message"] = "";
+                    TempData["MessageStyle"] = "background-color: red;color: white;";
+                }
+
+
+                // On retourne à la vue initiale
+                return View("CreerUtilisateur", modele);
+            }
 
             // On retourne à la vue initiale
             return View("CreerUtilisateur", modele);

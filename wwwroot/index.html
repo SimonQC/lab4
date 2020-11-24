@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <button id="buttonClick">Click</button>
+</body>
+</html>
+
+<script>
+
+    $(document).ready(function () {
+        $("#buttonClick").click(creer);
+    });
+
+    function creer() {
+
+        var utilisateur = {
+            id: createUUID(),
+            Prenom: "Admiuny1",
+            Nom: "Admin12341",
+            Courriel: "admin@admin.com",
+            MotDePasse: "Admin123$%",
+            DateDeNaissance: "2/16/2008 12:15:12 PM",
+            Homme: false,
+            Telephone: "4187777777",
+            NumCivique: 123,
+            Rue: "Allo",
+            NumCarteCredit: "4109904278359505",
+            Couleur: 1,
+            SiteWeb: "http://simonbelliveau.com",}
+
+        console.debug(utilisateur);
+        console.debug(JSON.stringify(utilisateur));
+
+        $.ajax({
+            type: "POST",
+            data: JSON.stringify(utilisateur),
+            url: "api/RequeteDTO",
+            contentType: "application/json",
+
+            success: function (d) {
+                if (d.reussite == null) {
+                    alert(d.erreurs)
+                }
+                else {
+                    alert(d.reussite)
+                }
+                
+            },
+
+            error: function (xhr, status, error) {
+                alert(error)
+            }
+        })
+
+    }
+
+    function createUUID() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+</script>

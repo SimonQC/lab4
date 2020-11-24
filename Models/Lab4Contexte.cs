@@ -19,9 +19,7 @@ namespace Lab4A.Models
             modelBuilder.Entity<Utilisateur>().HasKey(u => u.IdUtilisateur);
         }
 
-        public DbSet<Utilisateur> Utilisateur { get; set; }
-
-        public DbSet<Lab4A.Models.RequeteDTO> RequeteDTO { get; set; }
+        public DbSet<Utilisateur> Utilisateurs { get; set; }
 
     }
 }

@@ -14,17 +14,22 @@ namespace Lab4A.Models
 
         [Display(Name = "Prénom")]
         [Required]
+        [StringLength(45)]
         public string Prenom { get; set; }
 
         [Required]
         [Display(Name = "Nom")]
+        [StringLength(45)]
         public string Nom { get; set; }
 
         [Required]
+        [EmailAddress]
+        [StringLength(45)]
         [Display(Name = "Courriel")]
         public string Courriel { get; set; }
 
         [Required]
+        [StringLength(45)]
         [Display(Name = "Mot de passe")]
         public string MotDePasse { get; set; }
 
@@ -37,6 +42,7 @@ namespace Lab4A.Models
         public bool Homme { get; set; }
 
         [Required]
+        [Phone]
         [Display(Name = "Téléphone")]
         public string Telephone { get; set; }
 
@@ -45,18 +51,24 @@ namespace Lab4A.Models
         public int? NumCivique { get; set; } = 1;
 
         [Required]
+        [StringLength(45)]
         [Display(Name = "Adresse - Nom de rue")]
         public string Rue { get; set; }
 
         [Required]
+        [CreditCard]
+        [StringLength(45)]
         [Display(Name = "Numéro de carte de crédit")]
         public string NumCarteCredit { get; set; }
 
         [Required]
+        [Range(0,9)]
         [Display(Name = "Couleur préférée")]
         public Couleur CouleurPreferee { get; set; }
 
         [Required]
+        [Url]
+        [StringLength(45)]
         [Display(Name = "URL de votre site Web")]
         public string SiteWeb { get; set; }
     }
