@@ -61,5 +61,17 @@ namespace Lab4A.Models
         [Url]
         [StringLength(45)]
         public string SiteWeb { get; set; }
-    }
+
+		[Required]
+		[StringLength(45)]
+		public string PrenomConnexion { get; set; }
+
+		[Required]
+		[StringLength(45)]
+		public string NomConnexion { get; set; }
+
+		[Required]
+		[StringLength(45)]
+		public string MdpConnexion { get; set; }
+	}
 }

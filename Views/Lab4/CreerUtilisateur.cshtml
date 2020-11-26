@@ -68,10 +68,30 @@
     </div>
 
     <div>
+		@Html.LabelFor(x => x.CourrielAdmin)
+
+		@Html.TextBoxFor(x => x.CourrielAdmin, new { required = "required", type = "email", title = "Entrez une adresse courriel valide" })
+	</div>
+
+
+	<div>
+		@Html.LabelFor(x => x.MotDePasseAdmin)
+
+		@Html.TextBoxFor(x => x.MotDePasseAdmin, new { required = "required", pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", title = "Le mot de passe doit contenir minimum 8 caractères contenant : 1 minuscules, 1 majuscule, 1 chiffre et un caractère spécial" })
+	</div>
+
+     <div>
+        @Html.LabelFor(x => x.erreur)
+        @Html.CheckBoxFor(x => x.erreur)
+    </div>
+
+    <div>
         <input type="submit" value="Soumettre" id="btnSoumettre" asp-action="SauvegarderUtilisateur">
     </div>
 
-    @if (TempData["Message"] != null)
+
+
+@if (TempData["Message"] != null)
     {
         <div class="alert" style="@TempData["MessageStyle"]">
             @TempData["Message"]

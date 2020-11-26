@@ -33,19 +33,30 @@ namespace Lab4A.Controllers
             if (ModelState.IsValid)
             {
                 UtilisateurTraitement traitements = new UtilisateurTraitement(contexte_);
+				List<Utilisateur> utilisateurs = contexte_.Utilisateurs.ToList();
 
-                Utilisateur utilisateur = traitements.DTOaUtilisateur(requeteDTO);
+                if (utilisateurs.Any(utilisateur => utilisateur.Prenom == requeteDTO.PrenomConnexion && utilisateur.Nom == requeteDTO.NomConnexion && utilisateur.MotDePasse == requeteDTO.MdpConnexion))
+                {
+                    Utilisateur utilisateur = traitements.DTOaUtilisateur(requeteDTO);
+                    if (!traitements.SauvegarderUtilisateur(utilisateur))
+                    {
+                        reponse.erreurs.Add("Erreur de la sauvegarde de l'utilisateur");
+                    }
+                    else
+                    {
 
-				if (!traitements.SauvegarderUtilisateur(utilisateur))
-				{
-					reponse.erreurs.Add("Erreur de la sauvegarde de l'utilisateur");
-				}
+                        reponse.Reussite = "la sauvegarde de l'utilisateur a réussi";
+                    }
+                }
                 else
                 {
-
-                    reponse.Reussite = "la sauvegarde de l'utilisateur a réussi";
+                    reponse.erreurs.Add("Autorisation refusé");
                 }
-            }
+
+
+
+
+			}
             else
             {
                 var modelErrors = new List<string>();

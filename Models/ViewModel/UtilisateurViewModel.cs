@@ -37,7 +37,6 @@ namespace Lab4A.Models
         [Display(Name = "Date de naissance")]
         public DateTime DateDeNaissance { get; set; } = DateTime.Now;
 
-        [Required]
         [Display(Name = "Je suis un homme")]
         public bool Homme { get; set; }
 
@@ -71,5 +70,20 @@ namespace Lab4A.Models
         [StringLength(45)]
         [Display(Name = "URL de votre site Web")]
         public string SiteWeb { get; set; }
-    }
+
+		[Required]
+		[EmailAddress]
+		[StringLength(45)]
+		[Display(Name = "Courriel administrateur")]
+		public string CourrielAdmin { get; set; }
+
+		[Required]
+		[StringLength(45)]
+		[Display(Name = "Mot de passe administrateur")]
+		public string MotDePasseAdmin { get; set; }
+
+
+		[Display(Name = "Lancer exception")]
+		public bool erreur { get; set; }
+	}
 }
